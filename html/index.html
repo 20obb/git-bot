@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع الأمن السيبراني</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <ul>
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#about">عن الموقع</a></li>
+                <li><a href="#ethical-hacking">الاختراق الأخلاقي</a></li>
+                <li><a href="#contact">اتصل بنا</a></li>
+            </ul>
+            <div class="search-container">
+                <input type="text" id="search" placeholder="ابحث هنا...">
+                <button>بحث</button>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>مرحبًا بك في موقع الأمن السيبراني</h1>
+        <p>حماية بياناتك هي أولويتنا.</p>
+        <button onclick="window.location.href='newpage.html';">ابدأ الآن</button>
+    </section>
+
+    <section id="about">
+        <h2>عن الموقع</h2>
+        <p>هذا الموقع يهدف إلى رفع الوعي حول الأمن السيبراني وكيفية حماية بياناتك من الهجمات الرقمية.</p>
+    </section>
+
+    <section id="ethical-hacking">
+        <h2>الاختراق الأخلاقي والتوعية الأمنية</h2>
+        <p>الاختراق الأخلاقي هو عملية اختبار الأنظمة والشبكات لاكتشاف الثغرات بهدف تعزيز الأمان وحمايتها من الهجمات.</p>
+    </section>
+
+    <!-- قسم توليد كلمة المرور -->
+    <section id="password-generator">
+        <h2>مولد كلمات مرور امنة تحميك من الاختراق</h2>
+        <div>
+            <input type="text" id="generated-password" readonly placeholder="هنا ستظهر كلمة المرور">
+            <button class="button-gradient" onclick="generatePassword()">توليد كلمة مرور</button>
+            <button class="button-glow" onclick="copyPassword()">نسخ كلمة المرور</button>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>اتصل بنا</h2>
+        <form>
+            <label for="name">الاسم:</label>
+            <input type="text" id="name" name="name" required placeholder="أدخل اسمك">
+
+            <label for="email">البريد الإلكتروني:</label>
+            <input type="email" id="email" name="email" required placeholder="أدخل بريدك الإلكتروني">
+
+            <label for="message">رسالتك:</label>
+            <textarea id="message" name="message" required placeholder="اكتب رسالتك هنا"></textarea>
+
+            <button type="submit" class="button-neon">إرسال</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script>
+        // وظيفة لتوليد كلمة مرور عشوائية
+        function generatePassword() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+';
+            let password = '';
+            const passwordLength = 20;
+            for (let i = 0; i < passwordLength; i++) {
+                const randomIndex = Math.floor(Math.random() * characters.length);
+                password += characters[randomIndex];
+            }
+            document.getElementById('generated-password').value = password;
+        }
+
+        // وظيفة لنسخ كلمة المرور إلى الحافظة
+        function copyPassword() {
+            const passwordField = document.getElementById('generated-password');
+            passwordField.select();
+            document.execCommand('copy');
+            alert('تم نسخ كلمة المرور!');
+        }
+
+        // تفعيل الحركة عند التمرير
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(function(section) {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+                    section.classList.add('visible');
+                } else {
+                    section.classList.remove('visible');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
